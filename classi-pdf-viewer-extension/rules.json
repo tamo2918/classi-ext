@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "modifyHeaders",
+      "responseHeaders": [
+        {
+          "header": "content-disposition",
+          "operation": "set",
+          "value": "inline"
+        }
+      ]
+    },
+    "condition": {
+      "urlFilter": "||platform.classi.jp/api/cbank/*/download/pdf",
+      "resourceTypes": ["main_frame", "sub_frame", "xmlhttprequest", "other"]
+    }
+  }
+]
