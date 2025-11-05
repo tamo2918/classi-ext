@@ -13,7 +13,7 @@
       ]
     },
     "condition": {
-      "urlFilter": "||platform.classi.jp/api/cbank/*/download/pdf",
+      "urlFilter": "||classi.jp/api/cbank/*/download/pdf",
       "resourceTypes": ["main_frame", "sub_frame", "xmlhttprequest", "other"]
     }
   }

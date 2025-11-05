@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classi拡張くん</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- ヘッダー -->
+    <header class="header">
+      <h1 class="title">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+        </svg>
+        Classi拡張くん
+      </h1>
+      <p class="version">v3.1</p>
+    </header>
+
+    <!-- 機能セクション -->
+    <section class="features">
+      <!-- ダークモード -->
+      <div class="feature-item">
+        <div class="feature-header">
+          <div class="feature-icon dark-mode-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </div>
+          <div class="feature-info">
+            <h3 class="feature-title">ダークモード</h3>
+            <p class="feature-desc">夜間の閲覧に最適</p>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- PDF表示 -->
+      <div class="feature-item">
+        <div class="feature-header">
+          <div class="feature-icon pdf-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+            </svg>
+          </div>
+          <div class="feature-info">
+            <h3 class="feature-title">PDFオーバーレイ表示</h3>
+            <p class="feature-desc">タブ切り替え不要</p>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="pdfOverlayToggle">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+      <p class="footer-text">Classiでの快適な学習をサポート</p>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

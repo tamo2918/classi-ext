@@ -1,0 +1,169 @@
+/* サイドバー折りたたみ機能 - macOS Dock風 */
+
+/* サイドバーにトランジション効果を追加（既存機能を保持） */
+.mod-group-sidebar {
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              flex 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              min-width 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative !important;
+}
+
+/* 折りたたみ状態 */
+.mod-group-sidebar.sidebar-collapsed {
+  width: 0 !important;
+  min-width: 0 !important;
+  flex: 0 0 0 !important;
+  overflow: hidden !important;
+  opacity: 0;
+}
+
+/* 展開状態では元のスタイルを維持 */
+.mod-group-sidebar:not(.sidebar-collapsed) {
+  opacity: 1;
+}
+
+/* メインコンテンツのトランジション */
+.main-content {
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* 左端の開くボタン */
+.sidebar-open-button {
+  position: fixed;
+  left: 12px;
+  top: 72px; /* ヘッダーの高さ + マージン */
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 9998;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4),
+              0 2px 4px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* ホバー時の開くボタン */
+.sidebar-open-button:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.5),
+              0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar-open-button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.sidebar-open-button svg {
+  width: 20px;
+  height: 20px;
+  color: white;
+  transition: transform 0.2s ease;
+}
+
+/* 折りたたみボタン（サイドバー内） */
+.sidebar-collapse-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-collapse-button:hover {
+  background: rgba(102, 126, 234, 0.1);
+  border-color: rgba(102, 126, 234, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-collapse-button svg {
+  width: 18px;
+  height: 18px;
+  color: #666;
+  transition: transform 0.2s ease;
+}
+
+.sidebar-collapse-button:hover svg {
+  color: #667eea;
+}
+
+/* アニメーション用のキーフレーム */
+@keyframes slideIn {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* サイドバー展開時のコンテンツアニメーション */
+.mod-group-sidebar:not(.sidebar-collapsed) .sidebar {
+  animation: slideIn 0.3s ease;
+}
+
+/* 折りたたみ状態の時のみ開くボタンを表示 */
+body.sidebar-is-collapsed .sidebar-open-button {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+  .sidebar-collapse-button {
+    background: rgba(40, 40, 40, 0.95);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .sidebar-collapse-button:hover {
+    background: rgba(102, 126, 234, 0.2);
+    border-color: rgba(102, 126, 234, 0.4);
+  }
+
+  .sidebar-collapse-button svg {
+    color: #ccc;
+  }
+
+  .sidebar-collapse-button:hover svg {
+    color: #667eea;
+  }
+}
+
+/* スクロール機能の保持 */
+.mod-group-sidebar .sidebar {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+  .sidebar-open-button {
+    left: 8px;
+    top: 64px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .sidebar-open-button svg {
+    width: 18px;
+    height: 18px;
+  }
+}

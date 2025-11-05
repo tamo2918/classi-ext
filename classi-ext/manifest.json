@@ -1,0 +1,53 @@
+{
+  "manifest_version": 3,
+  "name": "Classi拡張くん",
+  "version": "3.3.0",
+  "description": "ClassiのPDFオーバーレイ表示、ダークモード、Spotlight風検索、サイドバー折りたたみ機能を備えた学習支援拡張機能",
+  "permissions": [
+    "declarativeNetRequest",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://*.classi.jp/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    },
+    "default_title": "Classi拡張くん"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.classi.jp/*"],
+      "js": ["darkreader.js", "content.js", "search-overlay.js", "sidebar-toggle.js"],
+      "css": ["styles.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["search-overlay.css", "sidebar-toggle.css"],
+      "matches": ["https://*.classi.jp/*"]
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
